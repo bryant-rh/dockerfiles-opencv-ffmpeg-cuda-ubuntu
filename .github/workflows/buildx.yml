@@ -22,7 +22,7 @@ jobs:
         with:
           publish: true
           imageName: tangx/opencv-debian
-          tag: 4.3.0-buster
+          tag: 4.3.0-ffmpeg-buster
           dockerHubUser: ${{ secrets.USERNAME }}
           dockerHubPassword: ${{ secrets.PASSWORD }}
           platform: linux/amd64,linux/arm64
