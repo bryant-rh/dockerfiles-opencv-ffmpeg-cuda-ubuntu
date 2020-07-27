@@ -26,4 +26,5 @@ jobs:
           dockerHubUser: ${{ secrets.USERNAME }}
           dockerHubPassword: ${{ secrets.PASSWORD }}
           platform: linux/amd64,linux/arm64
-          dockerFile: Dockerfile
+          dockerFile: gocv-debian.Dockerfile
+
