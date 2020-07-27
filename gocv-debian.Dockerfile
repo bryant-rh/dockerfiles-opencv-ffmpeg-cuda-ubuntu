@@ -41,3 +41,32 @@ RUN curl -Lo opencv.zip https://github.com/opencv/opencv/archive/${OPENCV_VERSIO
             make preinstall && make install && ldconfig && \
             cd / && rm -rf opencv*
 
+#################
+#  Go + OpenCV  #
+#################
+FROM opencv AS gocv
+LABEL maintainer="hybridgroup"
+
+ARG GOVERSION="1.14.6"
+ENV GOVERSION $GOVERSION
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+            git software-properties-common && \
+            curl -Lo go${GOVERSION}.linux-amd64.tar.gz https://dl.google.com/go/go${GOVERSION}.linux-amd64.tar.gz && \
+            tar -C /usr/local -xzf go${GOVERSION}.linux-amd64.tar.gz && \
+            rm go${GOVERSION}.linux-amd64.tar.gz && \
+            rm -rf /var/lib/apt/lists/*
+
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+
+RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+WORKDIR $GOPATH
+
+RUN go get -u -d gocv.io/x/gocv
+
+WORKDIR ${GOPATH}/src/gocv.io/x/gocv/cmd/version/
+
+RUN go build -o gocv_version -i main.go
+
+CMD ["./gocv_version"]

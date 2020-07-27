@@ -21,7 +21,7 @@ jobs:
         uses: ilteoood/docker_buildx@master
         with:
           publish: true
-          imageName: tangx/opencv-debian
+          imageName: tangx/golang-opencv-debian
           tag: 4.3.0-ffmpeg-buster
           dockerHubUser: ${{ secrets.USERNAME }}
           dockerHubPassword: ${{ secrets.PASSWORD }}
