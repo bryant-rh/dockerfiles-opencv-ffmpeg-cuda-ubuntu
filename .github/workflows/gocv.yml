@@ -1,0 +1,47 @@
+
+name: opencv 4.3.0
+
+on:
+  push:
+    branches: 
+     - master
+  pull_request:
+    branches:
+     - master
+
+jobs:
+  opencv-debian:
+    runs-on: ubuntu-latest
+    name: builx opencv-debian:4.3.0-ffmpeg-buster
+    steps:
+      # https://github.com/marketplace/actions/customizable-docker-buildx
+      - name: Checkout master
+        uses: actions/checkout@master
+      - name: Build and publish image
+        uses: ilteoood/docker_buildx@master
+        with:
+          publish: true
+          imageName: tangx/opencv-debian
+          tag: 4.3.0-ffmpeg-buster
+          dockerHubUser: ${{ secrets.USERNAME }}
+          dockerHubPassword: ${{ secrets.PASSWORD }}
+          platform: linux/amd64,linux/arm64
+          dockerFile: opencv-debian.Dockerfile
+  gocv-debian:
+    runs-on: ubuntu-latest
+    name: builx gocv-debian:4.3.0-ffmpeg-buster
+    steps:
+      # https://github.com/marketplace/actions/customizable-docker-buildx
+      - name: Checkout master
+        uses: actions/checkout@master
+      - name: Build and publish image
+        uses: ilteoood/docker_buildx@master
+        with:
+          publish: true
+          imageName: tangx/gocv-debian
+          tag: 4.3.0-ffmpeg-buster
+          dockerHubUser: ${{ secrets.USERNAME }}
+          dockerHubPassword: ${{ secrets.PASSWORD }}
+          platform: linux/amd64,linux/arm64
+          dockerFile: gocv-debian.Dockerfile
+    needs: opencv-debian
