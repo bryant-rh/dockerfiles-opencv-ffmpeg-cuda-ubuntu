@@ -1,6 +1,6 @@
 # dockerfiles-opencv-ffmpeg-debian
 
-opencv + ffmpeg + debian 
+opencv + ffmpeg + ubuntu 
 
 + ubuntu:18.04
 + golang: 1.14.6
