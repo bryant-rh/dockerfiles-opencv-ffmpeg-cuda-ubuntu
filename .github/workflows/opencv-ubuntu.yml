@@ -11,7 +11,7 @@ on:
 
 
 jobs:
-  opencv-debian:
+  opencv-ubuntu:
     runs-on: ubuntu-latest
     name: builx opencv-ubuntu:4.3.0-ffmpeg
     steps:
