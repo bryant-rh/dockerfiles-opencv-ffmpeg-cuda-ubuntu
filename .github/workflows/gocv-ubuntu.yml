@@ -23,7 +23,7 @@ jobs:
           publish: true
           imageName: bryantrh/opencv-ubuntu
           tag: 4.3.0-ffmpeg
-          dockerHubUser: ${{ secrets.USERNAME }}
-          dockerHubPassword: ${{ secrets.PASSWORD }}
+          dockerHubUser: ${{ secrets.DOCKER_USERNAME }}
+          dockerHubPassword: ${{ secrets.DOCKER_PASSWORD }}
           platform: linux/amd64,linux/arm64
           dockerFile: gocv-ubuntu.Dockerfile
