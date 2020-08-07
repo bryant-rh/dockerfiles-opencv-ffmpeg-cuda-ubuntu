@@ -4,7 +4,7 @@ name: gocv-ubuntu:4.3.0-18.04
 on:
   push:
     branches: 
-      - main
+      - master
     paths:
       # - 'opencv-debian.Dockerfile'
       - 'gocv-ubuntu.Dockerfile'
