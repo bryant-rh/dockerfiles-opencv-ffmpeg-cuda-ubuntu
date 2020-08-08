@@ -11,7 +11,7 @@ ENV GOVERSION $GOVERSION
 
 ARG TARGETARCH
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN echo $TARGETARCH && apt-get update && apt-get install -y --no-install-recommends \
             git software-properties-common && \
             curl -Lo go${GOVERSION}.linux-${TARGETARCH}.tar.gz https://dl.google.com/go/go${GOVERSION}.linux-${TARGETARCH}.tar.gz && \
             tar -C /usr/local -xzf go${GOVERSION}.linux-${TARGETARCH}.tar.gz && \
