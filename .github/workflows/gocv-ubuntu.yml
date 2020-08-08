@@ -21,7 +21,7 @@ jobs:
         uses: ilteoood/docker_buildx@master
         with:
           publish: true
-          imageName: bryantrh/opencv-ubuntu
+          imageName: bryantrh/gocv-ubuntu
           tag: 4.3.0-ffmpeg
           dockerHubUser: ${{ secrets.DOCKER_USERNAME }}
           dockerHubPassword: ${{ secrets.DOCKER_PASSWORD }}
