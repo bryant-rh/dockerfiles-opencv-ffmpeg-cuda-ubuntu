@@ -3,7 +3,7 @@
 #  Go + OpenCV  #
 #################
 #FROM tangx/opencv-debian:4.3.0-ffmpeg-buster AS gocv
-FROM bryantrh/opencv-ubuntu:4.3.0-ffmpeg AS gocv
+FROM bryantrh/opencv-ubuntu:4.4.0-ffmpeg AS gocv
 LABEL maintainer="hybridgroup"
 
 ARG GOVERSION="1.14.6"

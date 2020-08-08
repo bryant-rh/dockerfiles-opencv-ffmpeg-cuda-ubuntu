@@ -1,5 +1,5 @@
 
-name: gocv-ubuntu:4.3.0-18.04
+name: gocv-ubuntu:4.4.0-18.04
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
 jobs:
   gocv-ubuntu:
     runs-on: ubuntu-latest
-    name: builx gocv-ubuntu:4.3.0-ffmpeg
+    name: builx gocv-ubuntu:4.4.0-ffmpeg
     steps:
       # https://github.com/marketplace/actions/customizable-docker-buildx
       - name: Checkout master
@@ -22,7 +22,7 @@ jobs:
         with:
           publish: true
           imageName: bryantrh/gocv-ubuntu
-          tag: 4.3.0-ffmpeg
+          tag: 4.4.0-ffmpeg
           dockerHubUser: ${{ secrets.DOCKER_USERNAME }}
           dockerHubPassword: ${{ secrets.DOCKER_PASSWORD }}
           platform: linux/amd64,linux/arm64
