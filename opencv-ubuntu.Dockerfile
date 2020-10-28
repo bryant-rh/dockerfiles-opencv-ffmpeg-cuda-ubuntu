@@ -3,17 +3,25 @@ FROM ubuntu:18.04 AS opencv
 
 LABEL maintainer="bryantrh"
 
-RUN apt-get update \
-    && apt-get install -y ffmpeg \
-    && rm -rf /var/lib/apt/lists/*
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
             git build-essential cmake pkg-config unzip libgtk2.0-dev \
             curl ca-certificates libcurl4-openssl-dev libssl-dev \
             libavcodec-dev libavformat-dev libswscale-dev libtbb2 libtbb-dev \
-            libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev && \
+            libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev \
+            gcc git wget curl bash make build-essential  && \
             rm -rf /var/lib/apt/lists/*
 
+#install ffmpeg-3.4
+ADD ./FFmpeg-release-3.4 /opt/FFmpeg-release-3.4/
+RUN cd /opt/FFmpeg-release-3.4/ && \ 
+     ./configure  --prefix=/usr/local/ffmpeg-3.4  --disable-static  --disable-stripping  --disable-doc  --enable-shared  --disable-x86asm  --enable-openssl && \
+     make -j -s &&  make install && \
+     echo "/usr/local/ffmpeg-3.4/lib" >>/etc/ld.so.conf && \
+     ldconfig
+
+ENV PATH=$PATH:/usr/local/ffmpeg-3.4/bin/
+
+#install opencv-4.4.0
 ARG OPENCV_VERSION="4.4.0"
 ENV OPENCV_VERSION $OPENCV_VERSION
 
