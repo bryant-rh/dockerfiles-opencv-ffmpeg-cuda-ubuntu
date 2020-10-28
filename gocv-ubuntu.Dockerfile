@@ -1,22 +1,20 @@
+ARG OPENCV_VERSION
+FROM bryantrh/opencv-ubuntu:$OPENCV_VERSION-ffmpeg AS gocv
 
-#################
-#  Go + OpenCV  #
-#################
-#FROM tangx/opencv-debian:4.3.0-ffmpeg-buster AS gocv
-FROM bryantrh/opencv-ubuntu:4.4.0-ffmpeg AS gocv
-LABEL maintainer="hybridgroup"
+LABEL maintainer="bryantrh"
 
-ARG GOVERSION="1.14.6"
-ENV GOVERSION $GOVERSION
-
+ARG GOLANG_VERSION
 ARG TARGETARCH
+ENV GOLANG_VERSION $GOLANG_VERSION
 
-RUN echo $TARGETARCH && apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
             git software-properties-common && \
-            curl -Lo go${GOVERSION}.linux-${TARGETARCH}.tar.gz https://dl.google.com/go/go${GOVERSION}.linux-${TARGETARCH}.tar.gz && \
-            tar -C /usr/local -xzf go${GOVERSION}.linux-${TARGETARCH}.tar.gz && \
-            rm go${GOVERSION}.linux-${TARGETARCH}.tar.gz && \
             rm -rf /var/lib/apt/lists/*
+
+RUN set -eux; curl -o go.tgz -fsSL https://dl.google.com/go/go${GOLANG_VERSION}.linux-${TARGETARCH}.tar.gz && \
+            tar -C /usr/local -xf go.tgz && \
+            rm go.tgz
+            
 
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
@@ -24,10 +22,8 @@ ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 WORKDIR $GOPATH
 
-RUN go get -u -d gocv.io/x/gocv
+RUN go get -u -d gocv.io/x/gocv  \
+    && cd $GOPATH/src/gocv.io/x/gocv/cmd/version/ \
+    && go build -o /usr/bin/gocv_version -i main.go
 
-WORKDIR ${GOPATH}/src/gocv.io/x/gocv/cmd/version/
-
-RUN go build -o gocv_version -i main.go
-
-CMD ["./gocv_version"]
+CMD ["/usr/bin/gocv_version"]

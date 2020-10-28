@@ -1,13 +1,11 @@
-### dockerfiles-opencv-ffmpeg-debian
+### dockerfiles-opencv-ffmpeg-ubuntu
 
 opencv + ffmpeg + ubuntu 
 
 + ubuntu:18.04
-+ golang: 1.14.6
-+ opencv: 4.3.0
++ golang: 1.15.2
++ opencv: 4.4.0
 
 ### images
-+ tangx/opencv-debian
-    + [4.3.0-ffmpeg-ubuntu](opencv-ubuntu.Dockerfile)
-+ tangx/gocv-debian
-    + [4.3.0-ffmpeg-ubuntu](gocv-ubuntu.Dockerfile)
++ bryantrh/gocv-ubuntu:4.4.0-ffmpeg
++ bryantrh/opencv-ubuntu:4.4.0-ffmpeg

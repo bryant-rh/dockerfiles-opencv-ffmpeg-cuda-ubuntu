@@ -1,7 +1,7 @@
 ##FROM ubuntu:16.04 AS opencv
 FROM ubuntu:18.04 AS opencv
 
-LABEL maintainer="hybridgroup"
+LABEL maintainer="bryantrh"
 
 RUN apt-get update \
     && apt-get install -y ffmpeg \
