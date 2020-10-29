@@ -3,15 +3,11 @@ FROM bryantrh/cuda:$CUDA_VERSION-devel-ubuntu18.04
 
 LABEL maintainer="bryantrh"
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-            git build-essential cmake pkg-config unzip libgtk2.0-dev \
-            curl ca-certificates libcurl4-openssl-dev libssl-dev \
-            libavcodec-dev libavformat-dev libswscale-dev libtbb2 libtbb-dev \
-            libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev \
-            gcc git wget curl unzip bash make build-essential  && \
-            rm -rf /var/lib/apt/lists/*
-
 #install ffmpeg-3.4
+RUN apt-get update \
+    && apt-get install -y libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 ADD ./FFmpeg-release-3.4 /opt/FFmpeg-release-3.4/
 RUN cd /opt/FFmpeg-release-3.4/ && \ 
      ./configure  --prefix=/usr/local/ffmpeg-3.4  --disable-static  --disable-stripping  --disable-doc  --enable-shared  --disable-x86asm  --enable-openssl && \
@@ -23,6 +19,14 @@ RUN cd /opt/FFmpeg-release-3.4/ && \
 ENV PATH=$PATH:/usr/local/ffmpeg-3.4/bin/
 
 #install opencv-4.4.0
+RUN apt-get update && apt-get install -y --no-install-recommends \
+            git build-essential cmake pkg-config unzip libgtk2.0-dev \
+            curl ca-certificates libcurl4-openssl-dev libssl-dev \
+            libavcodec-dev libavformat-dev libswscale-dev libtbb2 libtbb-dev \
+            libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev \
+            gcc wget bash make build-essential  && \
+            rm -rf /var/lib/apt/lists/*
+
 ARG OPENCV_VERSION
 ENV OPENCV_VERSION $OPENCV_VERSION
 
