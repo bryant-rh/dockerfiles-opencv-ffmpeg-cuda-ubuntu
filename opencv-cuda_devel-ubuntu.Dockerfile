@@ -5,7 +5,7 @@ LABEL maintainer="bryantrh"
 
 #install ffmpeg-3.4
 RUN apt-get update \
-    && apt-get install -y libssl-dev \
+    && apt-get install -y gcc make libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 ADD ./FFmpeg-release-3.4 /opt/FFmpeg-release-3.4/
@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             curl ca-certificates libcurl4-openssl-dev libssl-dev \
             libavcodec-dev libavformat-dev libswscale-dev libtbb2 libtbb-dev \
             libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev \
-            gcc wget bash make build-essential  && \
+            wget bash  build-essential  && \
             rm -rf /var/lib/apt/lists/*
 
 ARG OPENCV_VERSION
