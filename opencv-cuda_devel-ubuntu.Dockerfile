@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             curl ca-certificates libcurl4-openssl-dev libssl-dev \
             libavcodec-dev libavformat-dev libswscale-dev libtbb2 libtbb-dev \
             libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev \
-            gcc git wget curl bash make build-essential  && \
+            gcc git wget curl unzip bash make build-essential  && \
             rm -rf /var/lib/apt/lists/*
 
 #install ffmpeg-3.4
