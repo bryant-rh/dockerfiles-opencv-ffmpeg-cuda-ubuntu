@@ -1,4 +1,5 @@
-FROM bryantrh/cuda:11.1-devel-ubuntu18.04
+ARG CUDA_VERSION
+FROM bryantrh/cuda:$CUDA_VERSION-devel-ubuntu18.04
 
 LABEL maintainer="bryantrh"
 
@@ -22,7 +23,7 @@ RUN cd /opt/FFmpeg-release-3.4/ && \
 ENV PATH=$PATH:/usr/local/ffmpeg-3.4/bin/
 
 #install opencv-4.4.0
-ARG OPENCV_VERSION="4.4.0"
+ARG OPENCV_VERSION
 ENV OPENCV_VERSION $OPENCV_VERSION
 
 RUN curl -Lo opencv.zip https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip && \

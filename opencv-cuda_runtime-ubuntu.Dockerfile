@@ -1,4 +1,5 @@
-FROM bryantrh/cuda:11.1-runtime-ubuntu18.04
+ARG CUDA_VERSION
+FROM bryantrh/cuda:$CUDA_VERSION-runtime-ubuntu18.04
 
 LABEL maintainer="bryantrh"
 
