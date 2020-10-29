@@ -1,5 +1,6 @@
 ARG OPENCV_VERSION
-FROM bryantrh/opencv-ubuntu:$OPENCV_VERSION-ffmpeg AS gocv
+ARG CUDA_VERSION
+FROM bryantrh/opencv-cuda-ubuntu:$OPENCV_VERSION-${CUDA_VERSION}-ffmpeg AS gocv
 
 LABEL maintainer="bryantrh"
 

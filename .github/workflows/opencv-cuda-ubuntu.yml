@@ -1,11 +1,11 @@
-name: opencv-ubuntu
+name: opencv-cuda-ubuntu
 
 on:
   push:
     paths:
-      - '.github/workflows/opencv-ubuntu.yml'
-      - 'opencv-ubuntu.Dockerfile'
-      - '.version'
+      - '.github/workflows/opencv-cuda-ubuntu.yml'
+      - 'opencv-cuda_runtime-ubuntu.Dockerfile'
+      - 'opencv-cuda_devel-ubuntu.Dockerfile'
 
 jobs:
   buildx:
@@ -18,5 +18,6 @@ jobs:
         with:
           password: ${{ secrets.DOCKER_PASSWORD }}
           username: ${{ secrets.DOCKER_USERNAME }}
-      - run: make opencv
+      - run: make opencv-cuda-runtime
+      - run: make opencv-cuda-devel
 

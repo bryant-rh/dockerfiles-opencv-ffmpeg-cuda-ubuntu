@@ -1,5 +1,4 @@
-##FROM ubuntu:16.04 AS opencv
-FROM ubuntu:18.04 AS opencv
+FROM bryantrh/cuda:11.1-runtime-ubuntu18.04
 
 LABEL maintainer="bryantrh"
 
