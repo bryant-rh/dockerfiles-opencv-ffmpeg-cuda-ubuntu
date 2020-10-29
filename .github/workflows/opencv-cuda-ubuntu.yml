@@ -33,6 +33,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       -
         name: Docker Buildx (build)
-        - run: make opencv-cuda-runtime
-        - run: make opencv-cuda-devel
+        run: | 
+          make opencv-cuda-runtime && \
+          make opencv-cuda-devel
 
