@@ -8,6 +8,7 @@ RUN apt-get update \
     && apt-get install -y gcc make libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
+
 ADD ./FFmpeg-release-3.4 /opt/FFmpeg-release-3.4/
 RUN cd /opt/FFmpeg-release-3.4/ && \ 
      ./configure  --prefix=/usr/local/ffmpeg-3.4  --disable-static  --disable-stripping  --disable-doc  --enable-shared  --disable-x86asm  --enable-openssl && \

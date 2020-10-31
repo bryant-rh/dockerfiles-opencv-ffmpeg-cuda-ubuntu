@@ -3,9 +3,9 @@ name: opencv-cuda-ubuntu
 on:
   push:
     paths:
-      - '.github/workflows/opencv-cuda-ubuntu.yml'
-#      - 'opencv-cuda_runtime-ubuntu.Dockerfile'
-#      - 'opencv-cuda_devel-ubuntu.Dockerfile'
+#      - '.github/workflows/opencv-cuda-ubuntu.yml'
+      - 'opencv-cuda_runtime-ubuntu.Dockerfile'
+      - 'opencv-cuda_devel-ubuntu.Dockerfile'
 jobs:
   buildx:
     runs-on: ubuntu-latest
