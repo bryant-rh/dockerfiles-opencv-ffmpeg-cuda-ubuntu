@@ -21,8 +21,8 @@ ENV PATH=$PATH:/usr/local/ffmpeg-3.4/bin/
 #install opencv-4.4.0
 RUN apt-get update && apt-get install -y --no-install-recommends \
             git build-essential cmake pkg-config unzip libgtk2.0-dev \
-            ca-certificates libcurl4-openssl-dev libssl-dev \
-            libavcodec-dev libavformat-dev libswscale-dev libtbb2 libtbb-dev \
+            ca-certificates libcurl4-openssl-dev \
+            libtbb2 libtbb-dev \
             libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev \
             wget curl bash  build-essential  && \
             rm -rf /var/lib/apt/lists/*
