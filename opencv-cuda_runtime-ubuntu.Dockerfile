@@ -12,7 +12,7 @@ RUN apt-get update \
 ADD ./FFmpeg-release-3.4 /opt/FFmpeg-release-3.4/
 RUN cd /opt/FFmpeg-release-3.4/ && \
      ./configure  --prefix=/usr/local/ffmpeg-3.4  --disable-static  --disable-stripping  --disable-doc  --enable-shared  --disable-x86asm  --enable-openssl && \
-     make -j -s &&  make install && \
+     make &&  make install && \
      echo "/usr/local/ffmpeg-3.4/lib" >>/etc/ld.so.conf && \
      ldconfig && \
      rm -rf  /opt/FFmpeg-release-3.4/

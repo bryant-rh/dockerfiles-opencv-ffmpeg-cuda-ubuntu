@@ -8,7 +8,7 @@ opencv-cuda-runtime:
 		--cache-from "type=local,src=/tmp/.buildx-cache" \
 		--cache-to "type=local,dest=/tmp/.buildx-cache" \
 		--file=opencv-cuda_runtime-ubuntu.Dockerfile \
-		--tag=bryantrh/opencv-cuda-runtime:${OPENCV_VERSION}-${CUDA_VERSION}-ffmpeg	\
+		--tag=bryantrh/rk-infrav2/opencv-cuda-runtime:${OPENCV_VERSION}-${CUDA_VERSION}-ffmpeg \
 		--build-arg=OPENCV_VERSION=${OPENCV_VERSION}	\
 		--build-arg=CUDA_VERSION=${CUDA_VERSION}	\
 		.
@@ -18,7 +18,7 @@ opencv-cuda-devel:
 		--cache-from "type=local,src=/tmp/.buildx-cache" \
 		--cache-to "type=local,dest=/tmp/.buildx-cache" \
 		--file=opencv-cuda_devel-ubuntu.Dockerfile \
-		--tag=bryantrh/opencv-cuda-devel:${OPENCV_VERSION}-${CUDA_VERSION}-ffmpeg	\
+		--tag=bryantrh/rk-infrav2/opencv-cuda-devel:${OPENCV_VERSION}-${CUDA_VERSION}-ffmpeg	\
 		--build-arg=OPENCV_VERSION=${OPENCV_VERSION}	\
 		--build-arg=CUDA_VERSION=${CUDA_VERSION}	\
 		.
@@ -27,7 +27,7 @@ gocv:
 	docker buildx build --push --progress plain \
 		--platform=${PLATFORM} \
 		--file=gocv-ubuntu.Dockerfile \
-		--tag=bryantrh/gocv-cuda-ubuntu:${GOLANG_VERSION}-${CUDA_VERSION}-ffmpeg \
+		--tag=bryantrh/rk-infrav2/gocv-cuda-ubuntu:${GOLANG_VERSION}-${CUDA_VERSION}-ffmpeg \
 		--build-arg=GOLANG_VERSION=${GOLANG_VERSION}	\
 		--build-arg=OPENCV_VERSION=${CUDA_VERSION}	\
 		.
