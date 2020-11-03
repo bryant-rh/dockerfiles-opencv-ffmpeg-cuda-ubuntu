@@ -21,3 +21,4 @@ jobs:
 #      - run: make opencv-cuda-runtime
       - run: make gocv-cuda-devel
 
+

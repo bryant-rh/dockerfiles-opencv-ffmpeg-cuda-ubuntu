@@ -29,7 +29,7 @@ gocv-cuda-devel:
 		--file=gocv-cuda_devel-ubuntu.Dockerfile \
 		--tag=bryantrh/gocv-cuda-devel:${GOLANG_VERSION}-${CUDA_VERSION}-ffmpeg \
 		--build-arg=GOLANG_VERSION=${GOLANG_VERSION}	\
-		--build-arg=OPENCV_VERSION=${CUDA_VERSION}	\
+		--build-arg=OPENCV_VERSION=${OPENCV_VERSION}	\
 		--build-arg=CUDA_VERSION=${CUDA_VERSION}	\
 		.
 
