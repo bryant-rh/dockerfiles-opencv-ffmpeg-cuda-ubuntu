@@ -1,10 +1,10 @@
 ARG OPENCV_VERSION
 ARG CUDA_VERSION
-FROM bryantrh/opencv-cuda-ubuntu:$OPENCV_VERSION-$CUDA_VERSION-ffmpeg AS gocv
+ARG GOLANG_VERSION
+FROM bryantrh/opencv-cuda-devel:$OPENCV_VERSION-$CUDA_VERSION-ffmpeg  AS gocv-cuda-devel
 
 LABEL maintainer="bryantrh"
 
-ARG GOLANG_VERSION
 ARG TARGETARCH
 ENV GOLANG_VERSION $GOLANG_VERSION
 

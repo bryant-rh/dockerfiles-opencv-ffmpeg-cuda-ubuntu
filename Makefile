@@ -23,12 +23,13 @@ opencv-cuda-devel:
 		--build-arg=CUDA_VERSION=${CUDA_VERSION}	\
 		.
 
-gocv:
+gocv-cuda-devel:
 	docker buildx build --push --progress plain \
 		--platform=${PLATFORM} \
-		--file=gocv-ubuntu.Dockerfile \
-		--tag=bryantrh/gocv-cuda-ubuntu:${GOLANG_VERSION}-${CUDA_VERSION}-ffmpeg \
+		--file=gocv-cuda_devel-ubuntu.Dockerfile \
+		--tag=bryantrh/gocv-cuda-devel:${GOLANG_VERSION}-${CUDA_VERSION}-ffmpeg \
 		--build-arg=GOLANG_VERSION=${GOLANG_VERSION}	\
 		--build-arg=OPENCV_VERSION=${CUDA_VERSION}	\
+		--build-arg=CUDA_VERSION=${CUDA_VERSION}	\
 		.
 
