@@ -8,16 +8,30 @@ on:
 #      - 'opencv-cuda_devel-ubuntu.Dockerfile'
 
 jobs:
-  buildx:
-    runs-on: ubuntu-latest
+  buildx-amd64:
+    runs-on:
+      - self-hosted
+      - amd64
     steps:
       - uses: actions/checkout@v2
-      - uses: docker/setup-qemu-action@v1
+      # - uses: docker/setup-qemu-action@v1
       - uses: docker/setup-buildx-action@v1
       - uses: docker/login-action@v1
         with:
           password: ${{ secrets.DOCKER_PASSWORD }}
           username: ${{ secrets.DOCKER_USERNAME }}
-      - run: make opencv-cuda-runtime
-#      - run: make gocv-cuda-devel
+      - run: make opencv-cuda-devel-amd64
+  buildx-arm64:
+    runs-on:
+      - self-hosted
+      - ARM64
+    steps:
+      - uses: actions/checkout@v2
+      # - uses: docker/setup-qemu-action@v1
+      - uses: docker/setup-buildx-action@v1
+      - uses: docker/login-action@v1
+        with:
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+      - run: make opencv-cuda-devel-arm64
 
