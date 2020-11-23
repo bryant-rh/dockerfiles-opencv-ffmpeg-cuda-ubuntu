@@ -1,10 +1,11 @@
-### dockerfiles-opencv-ffmpeg-ubuntu
+### dockerfiles-opencv-ffmpeg-cuda-ubuntu
 
-opencv + ffmpeg + ubuntu 
+opencv + ffmpeg + cuda + ubuntu 
 
 + ubuntu:18.04
 + golang: 1.15.2
 + opencv: 4.4.0
++ nvidia/cuda: 11.0
 
 ### images
 + bryantrh/gocv-ubuntu:4.4.0-ffmpeg

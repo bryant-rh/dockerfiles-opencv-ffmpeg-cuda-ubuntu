@@ -18,6 +18,6 @@ jobs:
         with:
           password: ${{ secrets.DOCKER_PASSWORD }}
           username: ${{ secrets.DOCKER_USERNAME }}
-#      - run: make opencv-cuda-runtime
-      - run: make gocv-cuda-devel
+      - run: make opencv-cuda-runtime
+#      - run: make gocv-cuda-devel
 
