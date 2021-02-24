@@ -3,7 +3,7 @@
 opencv + ffmpeg + cuda + ubuntu 
 
 + ubuntu:18.04
-+ golang: 1.15.2
++ golang: 1.16.0
 + opencv: 4.4.0
 + nvidia/cuda: 11.0
 
