@@ -18,7 +18,7 @@ RUN wget -q https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz  && tar 
      make &&  make install && \
      echo "/usr/local/ffmpeg-${FFMPEG_VERSION}/lib" >>/etc/ld.so.conf && \
      ldconfig && \
-     rm -rf  /opt/FFmpeg-${FFMPEG_VERSION}.tar.xz /opt/ffmpeg-${FFMPEG_VERSION}
+     cd /opt && rm -rf  /opt/FFmpeg-${FFMPEG_VERSION}.tar.xz /opt/ffmpeg-${FFMPEG_VERSION}
 
 ENV PATH=$PATH:/usr/local/ffmpeg-${FFMPEG_VERSION}/bin/
 
