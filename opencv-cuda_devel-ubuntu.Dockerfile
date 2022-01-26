@@ -13,7 +13,7 @@ RUN apt-get update \
 ARG FFMPEG_VERSION
 ENV FFMPEG_VERSION $FFMPEG_VERSION
 WORKDIR /opt
-RUN wget -q https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz  && tar -xvf ffmpeg-${FFMPEG_VERSION}.tar.xz && cd ffmpeg-${FFMPEG_VERSION} && \
+RUN wget -q https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz  &&  xz -d  ffmpeg-${FFMPEG_VERSION}.tar.xz && tar -xvf ffmpeg-${FFMPEG_VERSION}.tar &&  cd ffmpeg-${FFMPEG_VERSION} && \
      ./configure  --prefix=/usr/local/ffmpeg-${FFMPEG_VERSION}  --disable-static  --disable-stripping  --disable-doc  --enable-shared  --disable-x86asm  --enable-openssl  --enable-decoder=png --enable-encoder=png --enable-cuda --enable-cuvid --enable-nvenc && \
      make &&  make install && \
      echo "/usr/local/ffmpeg-${FFMPEG_VERSION}/lib" >>/etc/ld.so.conf && \
