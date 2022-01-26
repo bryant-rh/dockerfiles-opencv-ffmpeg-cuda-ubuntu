@@ -13,12 +13,12 @@ RUN apt-get update \
 ARG FFMPEG_VERSION
 ENV FFMPEG_VERSION $FFMPEG_VERSION
 WORKDIR /opt
-RUN wget -q https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz  && tar -xvf ffmpeg-${FFMPEG_VERSION}.tar.xz && cd ffmpeg-5.0 && \
+RUN wget -q https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz  && tar -xvf ffmpeg-${FFMPEG_VERSION}.tar.xz && cd ffmpeg-${FFMPEG_VERSION} && \
      ./configure  --prefix=/usr/local/ffmpeg-${FFMPEG_VERSION}  --disable-static  --disable-stripping  --disable-doc  --enable-shared  --disable-x86asm  --enable-openssl  --enable-decoder=png --enable-encoder=png --enable-cuda --enable-cuvid --enable-nvenc && \
      make &&  make install && \
      echo "/usr/local/ffmpeg-${FFMPEG_VERSION}/lib" >>/etc/ld.so.conf && \
      ldconfig && \
-     rm -rf  /opt/FFmpeg-${FFMPEG_VERSION}/
+     rm -rf  /opt/FFmpeg-${FFMPEG_VERSION}.tar.xz /opt/ffmpeg-${FFMPEG_VERSION}
 
 ENV PATH=$PATH:/usr/local/ffmpeg-${FFMPEG_VERSION}/bin/
 
