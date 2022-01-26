@@ -3,23 +3,26 @@ FROM bryantrh/cuda:$CUDA_VERSION-devel-ubuntu18.04
 
 LABEL maintainer="bryantrh"
 
-#install ffmpeg-3.4
+#install 
 RUN apt-get update \
     && apt-get install -y gcc make libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 
-ADD ./FFmpeg-release-3.4 /opt/FFmpeg-release-3.4/
-RUN cd /opt/FFmpeg-release-3.4/ && \ 
-     ./configure  --prefix=/usr/local/ffmpeg-3.4  --disable-static  --disable-stripping  --disable-doc  --enable-shared  --disable-x86asm  --enable-openssl && \
+#install ffmpeg
+ARG FFMPEG_VERSION
+ENV FFMPEG_VERSION $FFMPEG_VERSION
+WORKDIR /opt
+RUN wget -q https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz  && tar -xvf ffmpeg-${FFMPEG_VERSION}.tar.xz && cd ffmpeg-5.0 && \
+     ./configure  --prefix=/usr/local/ffmpeg-${FFMPEG_VERSION}  --disable-static  --disable-stripping  --disable-doc  --enable-shared  --disable-x86asm  --enable-openssl  --enable-decoder=png --enable-encoder=png --enable-cuda --enable-cuvid --enable-nvenc && \
      make &&  make install && \
-     echo "/usr/local/ffmpeg-3.4/lib" >>/etc/ld.so.conf && \
+     echo "/usr/local/ffmpeg-${FFMPEG_VERSION}/lib" >>/etc/ld.so.conf && \
      ldconfig && \
-     rm -rf  /opt/FFmpeg-release-3.4/
+     rm -rf  /opt/FFmpeg-${FFMPEG_VERSION}/
 
-ENV PATH=$PATH:/usr/local/ffmpeg-3.4/bin/
+ENV PATH=$PATH:/usr/local/ffmpeg-${FFMPEG_VERSION}/bin/
 
-#install opencv-4.4.0
+#install opencv
 RUN apt-get update && apt-get install -y --no-install-recommends \
             git build-essential cmake pkg-config unzip libgtk2.0-dev \
             curl ca-certificates libcurl4-openssl-dev \

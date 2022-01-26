@@ -2,6 +2,7 @@ OPENCV_VERSION := $(shell grep OPENCV_VERSION .version | cut -d '=' -f '2')
 CUDA_VERSION := $(shell grep CUDA_VERSION .version | cut -d '=' -f 2)
 GOLANG_VERSION := $(shell grep GOLANG_VERSION .version | cut -d '=' -f 2)
 GOCV_VERSION := $(shell grep GOCV_VERSION .version | cut -d '=' -f 2)
+FFMPEG_VERSION := $(shell grep FFMPEG_VERSION .version | cut -d '=' -f 2)
 PLATFORM := linux/amd64,linux/arm64
 
 opencv-cuda-runtime:
@@ -9,9 +10,10 @@ opencv-cuda-runtime:
 		--cache-from "type=local,src=/tmp/.buildx-cache" \
 		--cache-to "type=local,dest=/tmp/.buildx-cache" \
 		--file=opencv-cuda_runtime-ubuntu.Dockerfile \
-		--tag=bryantrh/opencv-cuda-runtime:${OPENCV_VERSION}-${CUDA_VERSION}-ffmpeg \
+		--tag=bryantrh/opencv-cuda-runtime:${OPENCV_VERSION}-${CUDA_VERSION}-${FFMPEG_VERSION} \
 		--build-arg=OPENCV_VERSION=${OPENCV_VERSION}	\
 		--build-arg=CUDA_VERSION=${CUDA_VERSION}	\
+		--build-arg=FFMPEG_VERSION=${FFMPEG_VERSION}	\
 		.
 
 opencv-cuda-devel:
@@ -22,6 +24,7 @@ opencv-cuda-devel:
 		--tag=bryantrh/opencv-cuda-devel:${OPENCV_VERSION}-${CUDA_VERSION}-ffmpeg	\
 		--build-arg=OPENCV_VERSION=${OPENCV_VERSION}	\
 		--build-arg=CUDA_VERSION=${CUDA_VERSION}	\
+		--build-arg=FFMPEG_VERSION=${FFMPEG_VERSION}	\
 		.
 
 gocv-cuda-devel:
