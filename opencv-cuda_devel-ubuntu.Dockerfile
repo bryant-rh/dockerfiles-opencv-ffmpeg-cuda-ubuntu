@@ -5,7 +5,7 @@ LABEL maintainer="bryantrh"
 
 #install 
 RUN apt-get update \
-    && apt-get install -y gcc make libssl-dev \
+    && apt-get install -y gcc make libssl-dev wget\
     && rm -rf /var/lib/apt/lists/*
 
 
