@@ -4,9 +4,13 @@ FROM bryantrh/cuda:$CUDA_VERSION-runtime-ubuntu18.04
 LABEL maintainer="bryantrh"
 
 #install
-RUN apt-get update \
-    && apt-get install -y gcc make libssl-dev wget xz-utils git pkgconf pkg-config \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+            gcc make libssl-dev git build-essential cmake pkg-config unzip libgtk2.0-dev \
+            ca-certificates libcurl4-openssl-dev \
+            libtbb2 libtbb-dev \
+            libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev \
+            wget curl bash  build-essential  && \
+            rm -rf /var/lib/apt/lists/*
 
 #install ffmpeg
 ARG FFMPEG_VERSION
@@ -26,14 +30,6 @@ RUN wget -q https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz  &&  xz 
 ENV PATH=$PATH:/usr/local/ffmpeg-${FFMPEG_VERSION}/bin/
 
 #install opencv
-RUN apt-get update && apt-get install -y --no-install-recommends \
-            git build-essential cmake pkg-config unzip libgtk2.0-dev \
-            ca-certificates libcurl4-openssl-dev \
-            libtbb2 libtbb-dev \
-            libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev \
-            wget curl bash  build-essential  && \
-            rm -rf /var/lib/apt/lists/*
-
 ARG OPENCV_VERSION
 ENV OPENCV_VERSION $OPENCV_VERSION
 
