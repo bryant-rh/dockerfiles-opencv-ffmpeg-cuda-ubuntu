@@ -31,6 +31,7 @@ RUN wget -q https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz  &&  xz 
 ENV PATH=$PATH:/usr/local/ffmpeg-${FFMPEG_VERSION}/bin/
 
 #install opencv
+ARG OPENCV_VERSION
 ENV OPENCV_VERSION $OPENCV_VERSION
 
 RUN curl -Lo opencv.zip https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip && \
