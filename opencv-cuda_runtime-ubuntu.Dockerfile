@@ -5,7 +5,7 @@ LABEL maintainer="bryantrh"
 
 #install
 RUN apt-get update \
-    && apt-get install -y gcc make libssl-dev wget xz-utils git \
+    && apt-get install -y gcc make libssl-dev wget xz-utils git pkgconf pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
 #install ffmpeg
