@@ -15,8 +15,9 @@ ENV FFMPEG_VERSION $FFMPEG_VERSION
 WORKDIR /opt
 ENV GIT_SSL_NO_VERIFY=1
 RUN git clone https://git.videolan.org/git/ffmpeg/nv-codec-headers.git && cd nv-codec-headers && make && make install && rm -rf /opt/nv-codec-headers
+ENV PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
 RUN wget -q https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz  &&  xz -d  ffmpeg-${FFMPEG_VERSION}.tar.xz && tar -xvf ffmpeg-${FFMPEG_VERSION}.tar &&  cd ffmpeg-${FFMPEG_VERSION} && \
-    PKG_CONFIG_PATH="/usr/local/lib/pkgconfig" ./configure  --prefix=/usr/local/ffmpeg-${FFMPEG_VERSION}  --disable-static  --disable-stripping  --disable-doc  --enable-shared  --disable-x86asm  --enable-decoder=png --enable-encoder=png --enable-cuda --enable-cuvid --enable-nvenc --enable-openssl --enable-filter=movie && \
+    ./configure  --prefix=/usr/local/ffmpeg-${FFMPEG_VERSION}  --disable-static  --disable-stripping  --disable-doc  --enable-shared  --disable-x86asm  --enable-decoder=png --enable-encoder=png --enable-cuda --enable-cuvid --enable-nvenc --enable-openssl --enable-filter=movie && \
      make -j32 &&  make install && \
      echo "/usr/local/ffmpeg-${FFMPEG_VERSION}/lib" >>/etc/ld.so.conf && \
      ldconfig && \
