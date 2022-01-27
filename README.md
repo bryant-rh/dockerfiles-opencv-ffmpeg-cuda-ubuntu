@@ -1,5 +1,5 @@
-### dockerfiles-opencv-ffmpeg-cuda-ubuntu
-
+# dockerfiles-opencv-ffmpeg-cuda-ubuntu
+## Version
 opencv + ffmpeg + cuda + ubuntu 
 
 + ubuntu:18.04
@@ -8,9 +8,21 @@ opencv + ffmpeg + cuda + ubuntu
 + nvidia/cuda: 11.0
 + ffmpeg: 5.0
 
-### images
+# images
+[https://hub.docker.com/u/bryantrh]
+
+## opencv-cuda-runtime
+
 + bryantrh/opencv-cuda-runtime:${OPENCV_VERSION}-${CUDA_VERSION}-${FFMPEG_VERSION}
 
 + bryantrh/opencv-cuda-runtime:4.4.0-11.0-5.0
-+ bryantrh/gocv-ubuntu:4.4.0-ffmpeg
-+ bryantrh/opencv-ubuntu:4.4.0-ffmpeg
+
+## opencv-cuda-devel
++ bryantrh/opencv-cuda-devel:${OPENCV_VERSION}-${CUDA_VERSION}-${FFMPEG_VERSION}
+  
++ bryantrh/opencv-cuda-devel:4.4.0-11.0-5.0
+
+## gocv-cuda-devel
++ bryantrh/gocv-cuda-devel:${GOLANG_VERSION}-${CUDA_VERSION}-${FFMPEG_VERSION}
+  
++ bryantrh/gocv-cuda-devel:4.4.0-11.0-5.0
