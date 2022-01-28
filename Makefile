@@ -30,7 +30,7 @@ opencv-cuda-devel:
 gocv-cuda-devel:
 	docker buildx build --progress=plain --push \
 		--platform=${PLATFORM}	\
-		--file=dockerfile/tmp.Dockerfile \
+		--file=tmp.Dockerfile \
 		--tag=bryantrh/opencv-cuda-devel:4.4.0-11.0-5.0 \
 		.
 	docker buildx build --push --progress plain \
