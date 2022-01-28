@@ -21,19 +21,25 @@ opencv-cuda-devel:
 		--cache-from "type=local,src=/tmp/.buildx-cache" \
 		--cache-to "type=local,dest=/tmp/.buildx-cache" \
 		--file=opencv-cuda_devel-ubuntu.Dockerfile \
-		--tag=bryantrh/opencv-cuda-devel:${OPENCV_VERSION}-${CUDA_VERSION}-ffmpeg	\
+		--tag=bryantrh/opencv-cuda-devel:${OPENCV_VERSION}-${CUDA_VERSION}-${FFMPEG_VERSION}	\
 		--build-arg=OPENCV_VERSION=${OPENCV_VERSION}	\
 		--build-arg=CUDA_VERSION=${CUDA_VERSION}	\
 		--build-arg=FFMPEG_VERSION=${FFMPEG_VERSION}	\
 		.
 
 gocv-cuda-devel:
+	docker buildx build --progress=plain --push \
+		--platform=${PLATFORM}	\
+		--file=dockerfile/tmp.Dockerfile \
+		--tag=bryantrh/opencv-cuda-devel:4.4.0-11.0-5.0 \
+		.
 	docker buildx build --push --progress plain \
 		--platform=${PLATFORM} \
 		--file=gocv-cuda_devel-ubuntu.Dockerfile \
-		--tag=bryantrh/gocv-cuda-devel:${GOLANG_VERSION}-${CUDA_VERSION}-ffmpeg \
+		--tag=bryantrh/gocv-cuda-devel:${GOLANG_VERSION}-${OPENCV_VERSION}-${CUDA_VERSION}-${FFMPEG_VERSION} \
 		--build-arg=GOLANG_VERSION=${GOLANG_VERSION}	\
 		--build-arg=OPENCV_VERSION=${OPENCV_VERSION}	\
 		--build-arg=CUDA_VERSION=${CUDA_VERSION}	\
 		--build-arg=GOCV_VERSION=${GOCV_VERSION}	\
+		--build-arg=FFMPEG_VERSION=${FFMPEG_VERSION}	\
 		.

@@ -1,6 +1,7 @@
 ARG OPENCV_VERSION
 ARG CUDA_VERSION
-FROM bryantrh/opencv-cuda-devel:$OPENCV_VERSION-$CUDA_VERSION-ffmpeg  AS gocv-cuda-devel
+ARG FFMPEG_VERSION
+FROM bryantrh/opencv-cuda-devel:$OPENCV_VERSION-$CUDA_VERSION-$FFMPEG_VERSION  AS gocv-cuda-devel
 
 LABEL maintainer="bryantrh"
 
